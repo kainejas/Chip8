@@ -93,11 +93,12 @@ public class Chip8 {
                     }
                     else if(nibble4 == 0xE) {
                         //rts
-                        //rts
-                        if(!stack.isEmpty())
+                        if(!stack.isEmpty()) {
                             setPC(stack.pop());
-                        else
+                        }
+                        else {
                             System.out.println("Stack is empty");
+                        }
                         setPC(PC+2);
                     }
                 }
@@ -373,9 +374,12 @@ public class Chip8 {
                     //store registers v0-vr at location I onwards
                     //Note: I is incremented to point to the next location on. e.g. I = I + r + 1
                     for(int i = 0; i < nibble2; i++) {
-                        if((byte)getRegI()+i < 0x1000)
-                        memory[getRegI()+i] = (byte)getReg(i);
-                    else System.out.println("Memory out of bounds!");
+                        if((byte)getRegI()+i < 0x1000){ 
+                            memory[getRegI()+i] = (byte)getReg(i); 
+                        }
+                        else {
+                            System.out.println("Memory out of bounds!");
+                        }
                     }
                 }
                 else if(nibble3 == 0x6) {
@@ -384,9 +388,12 @@ public class Chip8 {
                     //load registers v0-vr from location I onwards
                     //Note: I is incremented to point to the next location on. e.g. I = I + r + 1
                     for(int i = 0; i < nibble2; i++) {
-                        if((byte)getRegI()+i < 0x1000)
-                        setReg(i, memory[getRegI()+i]);
-                    else System.out.println("Memory out of bounds!");
+                        if((byte)getRegI()+i < 0x1000) { 
+                            setReg(i, memory[getRegI()+i]);
+                        }
+                        else {
+                            System.out.println("Memory out of bounds!");
+                        }
                     }
                 }
                 break;
