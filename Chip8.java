@@ -93,10 +93,11 @@ public class Chip8 {
                     }
                     else if(nibble4 == 0xE) {
                         //rts
+                        //rts
                         if(!stack.isEmpty())
-                        setPC(stack.pop());
+                            setPC(stack.pop());
                         else
-                        System.out.println("Stack is empty");
+                            System.out.println("Stack is empty");
                         setPC(PC+2);
                     }
                 }
@@ -254,6 +255,7 @@ public class Chip8 {
                     setReg(nibble2, getReg(nibble2) << 1);
                     setReg(0xF, temp);
                     setPC(PC+2);
+
                 }
 
                 break;
@@ -319,7 +321,6 @@ public class Chip8 {
                         //get delay timer into vr
                         setReg(nibble2, delay_timer);
                         setPC(PC+2);
-
                     }
                     else if(nibble4 == 0xA) {
                         //FR0A
@@ -374,7 +375,7 @@ public class Chip8 {
                     for(int i = 0; i < nibble2; i++) {
                         if((byte)getRegI()+i < 0x1000)
                         memory[getRegI()+i] = (byte)getReg(i);
-                        else System.out.println("Memory out of bounds!");
+                    else System.out.println("Memory out of bounds!");
                     }
                 }
                 else if(nibble3 == 0x6) {
@@ -384,8 +385,8 @@ public class Chip8 {
                     //Note: I is incremented to point to the next location on. e.g. I = I + r + 1
                     for(int i = 0; i < nibble2; i++) {
                         if((byte)getRegI()+i < 0x1000)
-                            setReg(i, memory[getRegI()+i]);
-                        else System.out.println("Memory out of bounds!");
+                        setReg(i, memory[getRegI()+i]);
+                    else System.out.println("Memory out of bounds!");
                     }
                 }
                 break;
